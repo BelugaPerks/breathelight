@@ -5,17 +5,17 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/trueBlack"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
     tools:context="MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:orientation="horizontal">
 
         <View
@@ -38,5 +38,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/timeSelector"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/spinner_background"
+            android:dropDownWidth="match_parent"
+            android:entries="@array/time_array" />
+
+    </LinearLayout>
 </LinearLayout>

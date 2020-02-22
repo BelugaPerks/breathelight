@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Breathe Light - Sleep Assist</string>
     <string name="settings_description">Button for the app settings</string>
+    <string-array name="time_array">
+        <item>10 Minutes</item>
+        <item>20 Minutes</item>
+        <item>30 Minutes</item>
+        <item>45 Minutes</item>
+        <item>60 Minutes</item>
+    </string-array>
 </resources>
