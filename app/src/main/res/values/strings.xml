@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Breathe Light - Sleep Assist</string>
+    <string name="settings_description">Button for the app settings</string>
 </resources>
