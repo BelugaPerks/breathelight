@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
         final ImageButton colourButton = root.findViewById(R.id.colourPickerButton);
         homeViewModel.getColourButtonBackground().observe(this.getViewLifecycleOwner(), new Observer<Drawable>() {
             @Override
@@ -50,13 +52,79 @@ public class HomeFragment extends Fragment {
                 colourButton.setBackground(d);
             }
         });
+        final View outsideView = root.findViewById(R.id.outsideView);
+
+        final View colourButtonView = root.findViewById(R.id.colourButtonView);
+        final ImageButton redButton = root.findViewById(R.id.image_button_red);
+        final ImageButton greenButton = root.findViewById(R.id.image_button_green);
+        final ImageButton purpleButton = root.findViewById(R.id.image_button_purple);
+        final ImageButton yellowButton = root.findViewById(R.id.image_button_yellow);
+        final ImageButton whiteButton = root.findViewById(R.id.image_button_white);
+        final ImageButton blueButton = root.findViewById(R.id.image_button_blue);
         colourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homeViewModel.setColourButtonBackground(new ColorDrawable(Color.parseColor("#ffffff")));
+                colourButtonView.setVisibility(View.VISIBLE);
+                outsideView.setVisibility(View.VISIBLE);
             }
         });
-
+        redButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colourButtonView.setVisibility(View.GONE);
+                outsideView.setVisibility(View.GONE);
+                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.red_light)));
+            }
+        });
+        greenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colourButtonView.setVisibility(View.GONE);
+                outsideView.setVisibility(View.GONE);
+                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.green_light)));
+            }
+        });
+        blueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colourButtonView.setVisibility(View.GONE);
+                outsideView.setVisibility(View.GONE);
+                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.blue_light)));
+            }
+        });
+        yellowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colourButtonView.setVisibility(View.GONE);
+                outsideView.setVisibility(View.GONE);
+                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.yellow_light)));
+            }
+        });
+        purpleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colourButtonView.setVisibility(View.GONE);
+                outsideView.setVisibility(View.GONE);
+                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.purple_light)));
+            }
+        });
+        whiteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colourButtonView.setVisibility(View.GONE);
+                outsideView.setVisibility(View.GONE);
+                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.white_light)));
+            }
+        });
+        outsideView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colourButtonView.setVisibility(View.GONE);
+                outsideView.setVisibility(View.GONE);
+            }
+        });
+        colourButtonView.setVisibility(View.GONE);
+        outsideView.setVisibility(View.GONE);
         return root;
     }
 
