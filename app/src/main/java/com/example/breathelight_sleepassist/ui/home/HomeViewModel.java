@@ -1,19 +1,28 @@
 package com.example.breathelight_sleepassist.ui.home;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<Drawable> colourButtonBackground;
 
     public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        colourButtonBackground = new MutableLiveData<>();
+        colourButtonBackground.setValue(new ColorDrawable(Color.parseColor("#ff0000")));
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setColourButtonBackground(Drawable colourButton){
+        this.colourButtonBackground.setValue(colourButton);
+    }
+
+    public LiveData<Drawable> getColourButtonBackground() {
+        return colourButtonBackground;
     }
 }
