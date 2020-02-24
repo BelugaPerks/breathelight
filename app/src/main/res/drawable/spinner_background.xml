@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <color android:color="@color/colorAccent" />
+        <color android:color="@color/colorPrimary" />
     </item>
     <item android:gravity="center_vertical|right" android:right="8dp">
         <layer-list>
@@ -10,14 +10,14 @@
                     android:fromDegrees="45"
                     android:toDegrees="45">
                     <shape android:shape="rectangle">
-                        <solid android:color="@color/trueBlack" />
-                        <stroke android:color="@color/colorPrimary" android:width="2dp"/>
+                        <solid android:color="@android:color/white" />
+                        <stroke android:color="@color/darkGrey" android:width="2dp"/>
                     </shape>
                 </rotate>
             </item>
             <item android:width="30dp" android:height="10dp" android:bottom="21dp" android:gravity="center">
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/colorAccent"/>
+                    <solid android:color="@color/colorPrimary"/>
                 </shape>
             </item>
         </layer-list>
