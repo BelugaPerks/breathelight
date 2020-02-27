@@ -32,6 +32,8 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+
         Spinner spinner = root.findViewById(R.id.timeSelector);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.time_array, R.layout.spinner_item);
@@ -96,16 +98,16 @@ public class HomeFragment extends Fragment {
 
 
 
-        final ImageButton colourButton = root.findViewById(R.id.colourPickerButton);
+        final ImageButton colourButton = root.findViewById(R.id.colour_picker_button);
         homeViewModel.getColourButtonBackground().observe(this.getViewLifecycleOwner(), new Observer<Drawable>() {
             @Override
             public void onChanged(Drawable d) {
                 colourButton.setBackground(d);
             }
         });
-        final View outsideView = root.findViewById(R.id.outsideView);
+        final View outsideView = root.findViewById(R.id.outside_view);
 
-        final View colourButtonView = root.findViewById(R.id.colourButtonView);
+        final View colourButtonView = root.findViewById(R.id.colour_button_view);
         final ImageButton redButton = root.findViewById(R.id.image_button_red);
         final ImageButton greenButton = root.findViewById(R.id.image_button_green);
         final ImageButton purpleButton = root.findViewById(R.id.image_button_purple);
@@ -191,6 +193,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        final Button startButton = root.findViewById(R.id.start_button);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         //setting default values
         colourButtonView.setVisibility(View.GONE);
@@ -198,6 +208,8 @@ public class HomeFragment extends Fragment {
         homeViewModel.setColourButtonBackground(redButton.getDrawable());
         startBPM.setProgress(11);
         goalBPM.setProgress(6);
+
+
         return root;
     }
 
