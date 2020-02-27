@@ -2,7 +2,7 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <scale
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:duration="500"
+        android:duration="150"
         android:fromXScale="0"
         android:fromYScale="0"
         android:pivotX="50%"
@@ -11,11 +11,11 @@
         android:toYScale="1" >
     </scale>
     <translate
-        android:fromXDelta="-50%"
+        android:fromXDelta="-57%"
         android:toXDelta="0%"
-        android:fromYDelta="150%"
+        android:fromYDelta="102%"
         android:toYDelta="0%"
-        android:duration="500">
+        android:duration="150">
 
     </translate>
 </set>

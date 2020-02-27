@@ -1,6 +1,5 @@
 package com.example.breathelight_sleepassist.ui.home;
 
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,10 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -56,14 +53,24 @@ public class HomeFragment extends Fragment {
         final ImageButton yellowButton = root.findViewById(R.id.image_button_yellow);
         final ImageButton whiteButton = root.findViewById(R.id.image_button_white);
         final ImageButton blueButton = root.findViewById(R.id.image_button_blue);
-        final Animation animExpand = AnimationUtils.loadAnimation(getContext(), R.anim.expand);
+        final Animation animPopUpRight = AnimationUtils.loadAnimation(getContext(), R.anim.pop_up_right);
+        final Animation animPopUpLeft = AnimationUtils.loadAnimation(getContext(), R.anim.pop_up_left);
+        final Animation animPopRight = AnimationUtils.loadAnimation(getContext(), R.anim.pop_right);
+        final Animation animPopLeft = AnimationUtils.loadAnimation(getContext(), R.anim.pop_left);
+        final Animation animPopDownRight = AnimationUtils.loadAnimation(getContext(), R.anim.pop_down_right);
+        final Animation animPopDownLeft = AnimationUtils.loadAnimation(getContext(), R.anim.pop_down_left);
 
         colourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 colourButtonView.setVisibility(View.VISIBLE);
-                redButton.startAnimation(animExpand);
+                redButton.startAnimation(animPopUpRight);
+                whiteButton.startAnimation(animPopUpLeft);
+                greenButton.startAnimation(animPopRight);
+                purpleButton.startAnimation(animPopLeft);
+                blueButton.startAnimation(animPopDownRight);
+                yellowButton.startAnimation(animPopDownLeft);
                 outsideView.setVisibility(View.VISIBLE);
 
             }
