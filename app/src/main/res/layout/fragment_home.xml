@@ -71,7 +71,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_start_bpm" />
+        app:layout_constraintTop_toBottomOf="@+id/text_start_bpm"
+        android:max="14"
+        android:min="8"/>
 
     <TextView
         android:id="@+id/text_end_bpm"

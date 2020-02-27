@@ -11,7 +11,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -36,6 +38,34 @@ public class HomeFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
+
+        final TextView startingBPMText = root.findViewById(R.id.text_start_bpm);
+        final String BPMText = startingBPMText.getText().toString() + ": ";
+        final SeekBar startingBPM = root.findViewById(R.id.seekBar_start_bpm);
+        homeViewModel.getStartingBPM().observe(this.getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer bpm) {
+                startingBPMText.setText(BPMText + bpm.toString());
+            }
+        });
+        startingBPM.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                homeViewModel.setStartingBPM(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         final ImageButton colourButton = root.findViewById(R.id.colourPickerButton);
         homeViewModel.getColourButtonBackground().observe(this.getViewLifecycleOwner(), new Observer<Drawable>() {
@@ -131,9 +161,14 @@ public class HomeFragment extends Fragment {
                 outsideView.setVisibility(View.GONE);
             }
         });
+
+
+        //setting default values
         colourButtonView.setVisibility(View.GONE);
         outsideView.setVisibility(View.GONE);
         homeViewModel.setColourButtonBackground(redButton.getDrawable());
+        homeViewModel.setStartingBPM(11);
+        startingBPM.setProgress(11);
         return root;
     }
 
