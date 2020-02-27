@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
-                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.red_light)));
+                homeViewModel.setColourButtonBackground(redButton.getDrawable());
 
             }
         });
@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
-                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.green_light)));
+                homeViewModel.setColourButtonBackground(greenButton.getDrawable());
             }
         });
         blueButton.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
-                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.blue_light)));
+                homeViewModel.setColourButtonBackground(blueButton.getDrawable());
             }
         });
         yellowButton.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
-                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.yellow_light)));
+                homeViewModel.setColourButtonBackground(yellowButton.getDrawable());
             }
         });
         purpleButton.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
-                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.purple_light)));
+                homeViewModel.setColourButtonBackground(purpleButton.getDrawable());
             }
         });
         whiteButton.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +121,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
-                homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.white_light)));
+                homeViewModel.setColourButtonBackground(whiteButton.getDrawable());
             }
         });
         outsideView.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +133,7 @@ public class HomeFragment extends Fragment {
         });
         colourButtonView.setVisibility(View.GONE);
         outsideView.setVisibility(View.GONE);
+        homeViewModel.setColourButtonBackground(redButton.getDrawable());
         return root;
     }
 
