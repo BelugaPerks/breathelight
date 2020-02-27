@@ -30,4 +30,11 @@
     <string name="colour_picker_header">Light Color</string>
     <string name="colour_picker_desc">Light Colour Picker Button</string>
     <string name="start_button_text">Start</string>
+
+    <string name="colour_picker_button_yellow_desc">Yellow Colour Picker Button</string>
+    <string name="colour_picker_button_white_desc">White Colour Picker Button</string>
+    <string name="colour_picker_button_blue_desc">Blue Colour Picker Button</string>
+    <string name="colour_picker_button_green_desc">Green Colour Picker Button</string>
+    <string name="colour_picker_button_red_desc">Red Colour Picker Button</string>
+    <string name="colour_picker_button_purple_desc">Purple Colour Picker Button</string>
 </resources>

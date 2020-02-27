@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -31,13 +33,6 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        homeViewModel.getText().observe(this.getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         Spinner spinner = root.findViewById(R.id.timeSelector);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.time_array, R.layout.spinner_item);
@@ -61,11 +56,16 @@ public class HomeFragment extends Fragment {
         final ImageButton yellowButton = root.findViewById(R.id.image_button_yellow);
         final ImageButton whiteButton = root.findViewById(R.id.image_button_white);
         final ImageButton blueButton = root.findViewById(R.id.image_button_blue);
+        final Animation animExpand = AnimationUtils.loadAnimation(getContext(), R.anim.expand);
+
         colourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 colourButtonView.setVisibility(View.VISIBLE);
+                redButton.startAnimation(animExpand);
                 outsideView.setVisibility(View.VISIBLE);
+
             }
         });
         redButton.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +74,7 @@ public class HomeFragment extends Fragment {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
                 homeViewModel.setColourButtonBackground(new ColorDrawable(getResources().getColor(R.color.red_light)));
+
             }
         });
         greenButton.setOnClickListener(new View.OnClickListener() {
