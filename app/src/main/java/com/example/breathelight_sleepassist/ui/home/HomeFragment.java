@@ -1,6 +1,7 @@
 package com.example.breathelight_sleepassist.ui.home;
 
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -34,11 +37,10 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        Spinner spinner = root.findViewById(R.id.timeSelector);
+        final Spinner spinner = root.findViewById(R.id.spinner_time_selector);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.time_array, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
 
@@ -142,7 +144,7 @@ public class HomeFragment extends Fragment {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
                 homeViewModel.setColourButtonBackground(redButton.getDrawable());
-
+                homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.red_light));
             }
         });
         greenButton.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +153,7 @@ public class HomeFragment extends Fragment {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
                 homeViewModel.setColourButtonBackground(greenButton.getDrawable());
+                homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.green_light));
             }
         });
         blueButton.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +162,7 @@ public class HomeFragment extends Fragment {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
                 homeViewModel.setColourButtonBackground(blueButton.getDrawable());
+                homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.blue_light));
             }
         });
         yellowButton.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +171,7 @@ public class HomeFragment extends Fragment {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
                 homeViewModel.setColourButtonBackground(yellowButton.getDrawable());
+                homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.yellow_light));
             }
         });
         purpleButton.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +180,7 @@ public class HomeFragment extends Fragment {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
                 homeViewModel.setColourButtonBackground(purpleButton.getDrawable());
+                homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.purple_light));
             }
         });
         whiteButton.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +189,7 @@ public class HomeFragment extends Fragment {
                 colourButtonView.setVisibility(View.GONE);
                 outsideView.setVisibility(View.GONE);
                 homeViewModel.setColourButtonBackground(whiteButton.getDrawable());
+                homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.white_light));
             }
         });
         outsideView.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +204,12 @@ public class HomeFragment extends Fragment {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), LightPulse.class);
+                intent.putExtra("startBPM", homeViewModel.getStartingBPM().getValue());
+                intent.putExtra("goalBPM", homeViewModel.getGoalBPM().getValue());
+                intent.putExtra("colour", homeViewModel.getColour().getValue());
+                intent.putExtra("duration", spinner.getSelectedItem().toString());
+                startActivity(intent);
             }
         });
 
@@ -206,6 +218,7 @@ public class HomeFragment extends Fragment {
         colourButtonView.setVisibility(View.GONE);
         outsideView.setVisibility(View.GONE);
         homeViewModel.setColourButtonBackground(redButton.getDrawable());
+        homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.red_light));
         startBPM.setProgress(11);
         goalBPM.setProgress(6);
 

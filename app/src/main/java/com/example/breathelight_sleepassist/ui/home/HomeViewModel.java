@@ -11,12 +11,15 @@ import androidx.lifecycle.ViewModel;
 public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<Drawable> colourButtonBackground;
+    private final MutableLiveData<Integer> colour;
     private final MutableLiveData<Integer> startingBPM;
     private final MutableLiveData<Integer> goalBPM;
 
 
     public HomeViewModel() {
         colourButtonBackground = new MutableLiveData<>();
+
+        colour = new MutableLiveData<>();
 
         startingBPM = new MutableLiveData<>();
         startingBPM.setValue(11);
@@ -30,6 +33,14 @@ public class HomeViewModel extends ViewModel {
 
     public LiveData<Drawable> getColourButtonBackground() {
         return colourButtonBackground;
+    }
+
+    public void setColour(Integer colourValue){
+        this.colour.setValue(colourValue);
+    }
+
+    public LiveData<Integer> getColour(){
+        return colour;
     }
 
     public void setStartingBPM(Integer newValue){
