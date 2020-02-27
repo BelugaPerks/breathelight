@@ -40,16 +40,16 @@ public class HomeFragment extends Fragment {
         spinner.setAdapter(adapter);
 
 
-        final TextView startingBPMText = root.findViewById(R.id.text_start_bpm);
-        final String BPMText = startingBPMText.getText().toString() + ": ";
-        final SeekBar startingBPM = root.findViewById(R.id.seekBar_start_bpm);
+        final TextView startBPMTextView = root.findViewById(R.id.text_start_bpm);
+        final String startBPMText = startBPMTextView.getText().toString() + ": ";
+        final SeekBar startBPM = root.findViewById(R.id.seekBar_start_bpm);
         homeViewModel.getStartingBPM().observe(this.getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer bpm) {
-                startingBPMText.setText(BPMText + bpm.toString());
+                startBPMTextView.setText(startBPMText + bpm);
             }
         });
-        startingBPM.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        startBPM.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -66,6 +66,35 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+        final TextView goalBPMTextView = root.findViewById(R.id.text_end_bpm);
+        final String goalBPMText = goalBPMTextView.getText().toString() + ": ";
+        final SeekBar goalBPM = root.findViewById(R.id.seekBar_end_bpm);
+        homeViewModel.getGoalBPM().observe(this.getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer bpm) {
+                goalBPMTextView.setText(goalBPMText + bpm);
+            }
+        });
+        goalBPM.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                homeViewModel.setGoalBPM(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
 
         final ImageButton colourButton = root.findViewById(R.id.colourPickerButton);
         homeViewModel.getColourButtonBackground().observe(this.getViewLifecycleOwner(), new Observer<Drawable>() {
@@ -167,8 +196,8 @@ public class HomeFragment extends Fragment {
         colourButtonView.setVisibility(View.GONE);
         outsideView.setVisibility(View.GONE);
         homeViewModel.setColourButtonBackground(redButton.getDrawable());
-        homeViewModel.setStartingBPM(11);
-        startingBPM.setProgress(11);
+        startBPM.setProgress(11);
+        goalBPM.setProgress(6);
         return root;
     }
 
