@@ -37,4 +37,7 @@
     <string name="colour_picker_button_green_desc">Green Colour Picker Button</string>
     <string name="colour_picker_button_red_desc">Red Colour Picker Button</string>
     <string name="colour_picker_button_purple_desc">Purple Colour Picker Button</string>
+
+    <string name="pulsing_light_description">Coloured background which changes from visible to invisible, and back again, to breathing rhythm</string>
+    <string name="stop_button_text">STOP</string>
 </resources>

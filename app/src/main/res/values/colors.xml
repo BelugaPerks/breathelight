@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#4d0000</color>
     <color name="colorAccent">#660000</color>
     <color name="darkGrey">#333333</color>
+    <color name="darkGreyStopButton">#BF333333</color>
     <color name="green_light">#33cc33</color>
     <color name="red_light">#ff0000</color>
     <color name="blue_light">#0066FF</color>

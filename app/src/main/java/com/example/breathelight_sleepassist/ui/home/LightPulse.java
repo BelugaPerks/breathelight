@@ -60,14 +60,14 @@ public class LightPulse extends Activity {
         lightPulseImage.setBackgroundColor(intent.getIntExtra("colour", 0));
         final Animation fadeLoop = AnimationUtils.loadAnimation( this.getApplicationContext(), R.anim.fade_loop);
         //final ObjectAnimator fade = (ObjectAnimator) AnimatorInflater.loadAnimator(this.getApplicationContext(), R.animator.fade);
-        Integer duration = Integer.valueOf(intent.getStringExtra("duration").substring(0,2));
+        Integer duration = Integer.valueOf(intent.getStringExtra("duration").substring(0,2))*60000;
         Integer startBPMDuration = 60000/intent.getIntExtra("startBPM", 0);
         Integer goalBPMDuration = 60000/intent.getIntExtra("goalBPM", 0);
 
         Integer BPMDelta = goalBPMDuration - startBPMDuration;
         Integer averageBPM = (startBPMDuration + goalBPMDuration)/2;
 
-        Log.i("debug", "onCreate: Start BPM duration: " + startBPMDuration + " Goal BPM duration: " + goalBPMDuration + " DPM Delta: " + BPMDelta + " Average BPM: " + averageBPM);
+        Log.i("debug", "onCreate: Start BPM duration: " + startBPMDuration + " Goal BPM duration: " + goalBPMDuration + " DPM Delta: " + BPMDelta + " Average BPM: " + averageBPM + " total duration: " + duration);
 
         Integer breathsInFiveMinutesAverage = 300000/averageBPM;
 
@@ -86,39 +86,32 @@ public class LightPulse extends Activity {
             Log.i("debug", "onCreate: " + startBPMDuration);
             final ObjectAnimator fadeAnimator = ObjectAnimator
                     .ofFloat(lightPulseImage, View.ALPHA, 0f, 1f)
-                    .setDuration(startBPMDuration);
+                    .setDuration(startBPMDuration/2);
+            fadeAnimator.setRepeatCount(1);
+            fadeAnimator.setRepeatMode(ValueAnimator.REVERSE);
             animations.add(fadeAnimator);
             totaltime = totaltime + startBPMDuration;
             startBPMDuration = startBPMDuration + breathDurationShift;
         }
         Log.i("debug", "onCreate: Total time for first set of animations: " + totaltime);
+        int remainingDuration = duration-300000;
+        int numberOfRepeats = remainingDuration/goalBPMDuration;
+        Log.i("debug", "onCreate: remaining duration: " + remainingDuration + " Number of repeats: " + numberOfRepeats);
+
+        final ObjectAnimator fadeAnimator = ObjectAnimator
+                .ofFloat(lightPulseImage, View.ALPHA, 0f, 1f)
+                .setDuration(goalBPMDuration/2);
+        fadeAnimator.setRepeatCount(1);
+        fadeAnimator.setRepeatMode(ValueAnimator.REVERSE);
+
+        for(int i = 0; i<numberOfRepeats; i++){
+            animations.add(fadeAnimator);
+        }
+        Log.i("debug", "onCreate: animations list size: " + animations.size());
 
 
-
-
-//        Integer BPMDurationIncrease = (goalBPMDuration-startBPMDuration)/4;
-//
-//        //fade.setTarget(lightPulseImage);
-//        for(int i = 0; i<5; i++){
-//            Log.i("debug", "onCreate: " + startBPMDuration + " " + goalBPMDuration + " " + BPMDurationIncrease);
-////            fadeLoop.setDuration(startBPMDuration);
-////            fadeLoop.setRepeatCount(6000/BPMDurationIncrease);
-////            lightPulseImage.startAnimation(fadeLoop);
-////            fade.setDuration(startBPMDuration);
-////            fade.setRepeatCount(6000/BPMDurationIncrease);
-////            fade.setTarget(lightPulseImage);
-////            pulseSet.playSequentially(fade);
-////            pulseSet.start();
-//            final ObjectAnimator fadeAnimator = ObjectAnimator
-//                    .ofFloat(lightPulseImage, View.ALPHA, 0f, 1f)
-//                    .setDuration(startBPMDuration);
-//            fadeAnimator.setRepeatCount(6000/BPMDurationIncrease);
-//            fadeAnimator.setRepeatMode(ValueAnimator.REVERSE);
-//            animations.add(fadeAnimator);
-//
-//            startBPMDuration = startBPMDuration + BPMDurationIncrease;
-//        }
         pulseSet.playSequentially(animations);
+        pulseSet.start();
 
 
 
