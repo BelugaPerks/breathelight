@@ -9,8 +9,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -43,9 +45,12 @@ public class LightPulse extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        hideStatusBar();
 
         setContentView(R.layout.light_pulse);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        hideStatusBar();
 
         Button stopButton = findViewById(R.id.stop_button);
         stopButton.setOnClickListener(new View.OnClickListener() {
@@ -56,11 +61,22 @@ public class LightPulse extends Activity {
         });
 
         Intent intent = getIntent();
-        ImageView lightPulseImage = findViewById(R.id.image_pulsing_light);
+        final ImageView lightPulseImage = findViewById(R.id.image_pulsing_light);
         lightPulseImage.setBackgroundColor(intent.getIntExtra("colour", 0));
         final Animation fadeLoop = AnimationUtils.loadAnimation( this.getApplicationContext(), R.anim.fade_loop);
         //final ObjectAnimator fade = (ObjectAnimator) AnimatorInflater.loadAnimator(this.getApplicationContext(), R.animator.fade);
         Integer duration = Integer.valueOf(intent.getStringExtra("duration").substring(0,2))*60000;
+
+        final Handler screenOffHandler = new Handler();
+        screenOffHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("debug", "times up");
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                lightPulseImage.setVisibility(View.GONE);
+            }
+        }, duration);
+
         Integer startBPMDuration = 60000/intent.getIntExtra("startBPM", 0);
         Integer goalBPMDuration = 60000/intent.getIntExtra("goalBPM", 0);
 
@@ -80,20 +96,20 @@ public class LightPulse extends Activity {
         AnimatorSet pulseSet = new AnimatorSet();
         List<Animator> animations = new ArrayList<>();
 
-        Integer totaltime = 0;
+        Integer totalTime = 0;
 
         for(int i = 0; i<breathsInFiveMinutesAverage; i++){
             Log.i("debug", "onCreate: " + startBPMDuration);
             final ObjectAnimator fadeAnimator = ObjectAnimator
                     .ofFloat(lightPulseImage, View.ALPHA, 0f, 1f)
-                    .setDuration(startBPMDuration/2);
+                    .setDuration(startBPMDuration);
             fadeAnimator.setRepeatCount(1);
             fadeAnimator.setRepeatMode(ValueAnimator.REVERSE);
             animations.add(fadeAnimator);
-            totaltime = totaltime + startBPMDuration;
+            totalTime = totalTime + startBPMDuration;
             startBPMDuration = startBPMDuration + breathDurationShift;
         }
-        Log.i("debug", "onCreate: Total time for first set of animations: " + totaltime);
+        Log.i("debug", "onCreate: Total time for first set of animations: " + totalTime);
         int remainingDuration = duration-300000;
         int numberOfRepeats = remainingDuration/goalBPMDuration;
         Log.i("debug", "onCreate: remaining duration: " + remainingDuration + " Number of repeats: " + numberOfRepeats);
