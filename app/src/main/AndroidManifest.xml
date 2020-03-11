@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.LightPulse"
+        <activity android:name=".ui.light.LightPulse"
                   android:label="Light Pulse Activity"
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 

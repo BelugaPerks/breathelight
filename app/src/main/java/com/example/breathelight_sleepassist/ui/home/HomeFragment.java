@@ -1,7 +1,6 @@
 package com.example.breathelight_sleepassist.ui.home;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -24,6 +22,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.breathelight_sleepassist.R;
+import com.example.breathelight_sleepassist.ui.light.LightPulse;
 
 public class HomeFragment extends Fragment {
 
