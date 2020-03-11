@@ -260,11 +260,15 @@ public class HomeFragment extends Fragment {
 
         //set values to be either default or what is saved in shared prefs
         homeViewModel.setSharedPrefsValues();
+        if(homeViewModel.getColour().getValue() == -1){
+            homeViewModel.setColour(ContextCompat.getColor(getContext(), R.color.red_light));
+        }
 
         //set startBPM, goalBPM, and spinner position to be the values in homeViewModel
         startBPM.setProgress(homeViewModel.getStartingBPM().getValue());
         goalBPM.setProgress(homeViewModel.getGoalBPM().getValue());
         spinner.setSelection(homeViewModel.getDurationSpinnerPositon().getValue());
+
 
 
         //setting default values for colour selector view
