@@ -1,16 +1,16 @@
-package com.example.breathelight_sleepassist.ui.tools;
+package com.example.breathelight_sleepassist.ui.rate;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ToolsViewModel extends ViewModel {
+public class RateViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ToolsViewModel() {
+    public RateViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+        mText.setValue("This is rate fragment");
     }
 
     public LiveData<String> getText() {
