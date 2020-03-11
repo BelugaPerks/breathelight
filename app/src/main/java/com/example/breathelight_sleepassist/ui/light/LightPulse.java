@@ -1,27 +1,19 @@
 package com.example.breathelight_sleepassist.ui.light;
 
 import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-
-import androidx.lifecycle.ViewModelProviders;
-
 import com.example.breathelight_sleepassist.R;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -11,7 +11,6 @@ import androidx.lifecycle.MutableLiveData;
 
 public class HomeViewModel extends AndroidViewModel {
 
-    //private final MutableLiveData<Drawable> colourButtonBackground;
     private final MutableLiveData<String> colourButtonBackground;
     private final MutableLiveData<Integer> colour;
     private final MutableLiveData<Integer> startingBPM;
@@ -23,7 +22,6 @@ public class HomeViewModel extends AndroidViewModel {
 
     public HomeViewModel(Application application) {
         super(application);
-        //colourButtonBackground = new MutableLiveData<>();
 
         colour = new MutableLiveData<>();
         colourButtonBackground = new MutableLiveData<>();
@@ -38,15 +36,6 @@ public class HomeViewModel extends AndroidViewModel {
 
     }
 
-
-
-//    public void setColourButtonBackground(Drawable colourButtonBackground){
-//        this.colourButtonBackground.setValue(colourButtonBackground);
-//    }
-//
-//    public LiveData<Drawable> getColourButtonBackground() {
-//        return colourButtonBackground;
-//    }
 
     public void setColour(Integer colourValue){
         this.colour.setValue(colourValue);
