@@ -67,15 +67,6 @@ public class LightPulse extends Activity {
         //final ObjectAnimator fade = (ObjectAnimator) AnimatorInflater.loadAnimator(this.getApplicationContext(), R.animator.fade);
         Integer duration = Integer.valueOf(intent.getStringExtra("duration").substring(0,2))*60000;
 
-        final Handler screenOffHandler = new Handler();
-        screenOffHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("debug", "times up");
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                lightPulseImage.setVisibility(View.GONE);
-            }
-        }, duration);
 
         Integer startBPMDuration = 60000/intent.getIntExtra("startBPM", 0);
         Integer goalBPMDuration = 60000/intent.getIntExtra("goalBPM", 0);
@@ -96,7 +87,7 @@ public class LightPulse extends Activity {
         AnimatorSet pulseSet = new AnimatorSet();
         List<Animator> animations = new ArrayList<>();
 
-        Integer totalTime = 0;
+        Integer totalTimeForFirstAnimations = 0;
 
         for(int i = 0; i<breathsInFiveMinutesAverage; i++){
             Log.i("debug", "onCreate: " + startBPMDuration);
@@ -106,24 +97,42 @@ public class LightPulse extends Activity {
             fadeAnimator.setRepeatCount(1);
             fadeAnimator.setRepeatMode(ValueAnimator.REVERSE);
             animations.add(fadeAnimator);
-            totalTime = totalTime + startBPMDuration;
+            totalTimeForFirstAnimations = totalTimeForFirstAnimations + startBPMDuration;
             startBPMDuration = startBPMDuration + breathDurationShift;
         }
-        Log.i("debug", "onCreate: Total time for first set of animations: " + totalTime);
+        Log.i("debug", "onCreate: Total time for first set of animations: " + totalTimeForFirstAnimations);
         int remainingDuration = duration-300000;
-        int numberOfRepeats = remainingDuration/goalBPMDuration;
-        Log.i("debug", "onCreate: remaining duration: " + remainingDuration + " Number of repeats: " + numberOfRepeats);
+        int numberOfRepeatsRemaining = remainingDuration/goalBPMDuration;
+        Log.i("debug", "onCreate: remaining duration: " + remainingDuration + " Number of repeats: " + numberOfRepeatsRemaining);
+        Log.i("debug", "onCreate: GoalBPM: " + goalBPMDuration);
+        if(numberOfRepeatsRemaining%2 == 0){
+            numberOfRepeatsRemaining=numberOfRepeatsRemaining+1;
+        }
+        Log.i("debug", "onCreate: remaining duration: " + remainingDuration + " Number of repeats: " + numberOfRepeatsRemaining);
 
         final ObjectAnimator fadeAnimator = ObjectAnimator
                 .ofFloat(lightPulseImage, View.ALPHA, 0f, 1f)
-                .setDuration(goalBPMDuration/2);
-        fadeAnimator.setRepeatCount(1);
+                .setDuration(goalBPMDuration);
+        fadeAnimator.setRepeatCount(numberOfRepeatsRemaining+6);
         fadeAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        animations.add(fadeAnimator);
 
-        for(int i = 0; i<numberOfRepeats; i++){
-            animations.add(fadeAnimator);
-        }
         Log.i("debug", "onCreate: animations list size: " + animations.size());
+
+        int totalAnimationTime = totalTimeForFirstAnimations + (numberOfRepeatsRemaining*goalBPMDuration);
+
+        Log.i("debug", "onCreate: animations total time in milliseconds: " + totalAnimationTime);
+
+        final Handler screenOffHandler = new Handler();
+        screenOffHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("debug", "times up");
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                lightPulseImage.setVisibility(View.GONE);
+            }
+        }, duration);
+
 
 
         pulseSet.playSequentially(animations);
