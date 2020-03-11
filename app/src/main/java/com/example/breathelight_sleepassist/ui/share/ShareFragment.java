@@ -1,4 +1,4 @@
-package com.belugabisks.breathelight_sleepassist.ui.share;
+package com.example.breathelight_sleepassist.ui.share;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

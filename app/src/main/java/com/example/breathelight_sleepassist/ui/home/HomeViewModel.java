@@ -1,4 +1,4 @@
-package com.belugabisks.breathelight_sleepassist.ui.home;
+package com.example.breathelight_sleepassist.ui.home;
 
 
 import android.app.Application;

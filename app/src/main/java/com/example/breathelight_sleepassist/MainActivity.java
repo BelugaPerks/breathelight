@@ -1,4 +1,4 @@
-package com.belugabisks.breathelight_sleepassist;
+package com.example.breathelight_sleepassist;
 
 
 import android.os.Bundle;

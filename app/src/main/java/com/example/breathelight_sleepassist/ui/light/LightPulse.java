@@ -1,4 +1,4 @@
-package com.belugabisks.breathelight_sleepassist.ui.light;
+package com.example.breathelight_sleepassist.ui.light;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -100,6 +100,7 @@ public class LightPulse extends Activity {
         //For loop to create the initial set of animators for the transition between start and goal BPM, over 5 minutes
         for(int i = 0; i<breathsInFiveMinutesAverage; i++){
             Log.i("debug", "onCreate: " + breathDuration);
+            Log.i("debug", "onCreate colour is: " + intent.getIntExtra("colour", 0));
             //Create the animator to fade in and out once and add it to the list
             final ObjectAnimator fadeAnimator = ObjectAnimator
                     .ofFloat(lightPulseImage, View.ALPHA, 0f, 1f)
@@ -159,7 +160,7 @@ public class LightPulse extends Activity {
                     }
                 }, 30000);
             }
-        }, duration);
+        }, 10);
 
         //Add the animator list to the animatorSet, and play them sequentially
         pulseSet.playSequentially(animations);
