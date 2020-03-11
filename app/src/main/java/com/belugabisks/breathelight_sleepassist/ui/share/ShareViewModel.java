@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist.ui.share;
+package com.belugabisks.breathelight_sleepassist.ui.share;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

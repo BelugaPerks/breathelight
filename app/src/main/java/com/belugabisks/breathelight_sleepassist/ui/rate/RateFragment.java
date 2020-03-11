@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist.ui.about;
+package com.belugabisks.breathelight_sleepassist.ui.rate;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.breathelight_sleepassist.R;
 
-public class AboutFragment extends Fragment {
+public class RateFragment extends Fragment {
 
-    private AboutViewModel aboutViewModel;
+    private com.example.breathelight_sleepassist.ui.rate.RateViewModel rateViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        aboutViewModel =
-                ViewModelProviders.of(this).get(AboutViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_about, container, false);
-        final TextView textView = root.findViewById(R.id.text_about);
-        aboutViewModel.getText().observe(this, new Observer<String>() {
+        rateViewModel =
+                ViewModelProviders.of(this).get(com.example.breathelight_sleepassist.ui.rate.RateViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_rate, container, false);
+        final TextView textView = root.findViewById(R.id.text_rate);
+        rateViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

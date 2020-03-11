@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist.ui.light;
+package com.belugabisks.breathelight_sleepassist.ui.light;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
