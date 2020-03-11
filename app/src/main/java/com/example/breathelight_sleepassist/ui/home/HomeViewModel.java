@@ -1,50 +1,87 @@
 package com.example.breathelight_sleepassist.ui.home;
 
 
-import android.graphics.drawable.Drawable;
+import android.app.Application;
+import android.content.SharedPreferences;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 
-public class HomeViewModel extends ViewModel {
+public class HomeViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<Drawable> colourButtonBackground;
+    //private final MutableLiveData<Drawable> colourButtonBackground;
+    private final MutableLiveData<String> colourButtonBackground;
     private final MutableLiveData<Integer> colour;
     private final MutableLiveData<Integer> startingBPM;
     private final MutableLiveData<Integer> goalBPM;
+    private final MutableLiveData<Integer> durationSpinnerPosition;
+    private final SharedPreferences pref;
+    private final SharedPreferences.Editor editor;
 
 
-    public HomeViewModel() {
-        colourButtonBackground = new MutableLiveData<>();
+    public HomeViewModel(Application application) {
+        super(application);
+        //colourButtonBackground = new MutableLiveData<>();
 
         colour = new MutableLiveData<>();
+        colourButtonBackground = new MutableLiveData<>();
 
         startingBPM = new MutableLiveData<>();
-        startingBPM.setValue(11);
         goalBPM = new MutableLiveData<>();
-        goalBPM.setValue(6);
+        durationSpinnerPosition = new MutableLiveData<>();
+
+
+        pref = this.getApplication().getSharedPreferences("BreathLightValues", 0);
+        editor = pref.edit();
+
     }
 
-    public void setColourButtonBackground(Drawable colourButton){
-        this.colourButtonBackground.setValue(colourButton);
-    }
 
-    public LiveData<Drawable> getColourButtonBackground() {
-        return colourButtonBackground;
-    }
+
+//    public void setColourButtonBackground(Drawable colourButtonBackground){
+//        this.colourButtonBackground.setValue(colourButtonBackground);
+//    }
+//
+//    public LiveData<Drawable> getColourButtonBackground() {
+//        return colourButtonBackground;
+//    }
 
     public void setColour(Integer colourValue){
         this.colour.setValue(colourValue);
+        editor.putInt("colour", colourValue);
+        editor.commit();
     }
 
     public LiveData<Integer> getColour(){
         return colour;
     }
 
+    public void setDurationSpinnerPosition(Integer spinnerPositonValue){
+        this.durationSpinnerPosition.setValue(spinnerPositonValue);
+        editor.putInt("spinnerPosition", spinnerPositonValue);
+        editor.commit();
+    }
+
+    public LiveData<Integer> getDurationSpinnerPositon(){
+        return durationSpinnerPosition;
+    }
+
+    public void setColourButtonBackground(String colourButtonName){
+        this.colourButtonBackground.setValue(colourButtonName);
+        editor.putString("colourButtonBackground", colourButtonName);
+        editor.commit();
+    }
+
+    public LiveData<String> getColourButtonBackground(){
+        return colourButtonBackground;
+    }
+
     public void setStartingBPM(Integer newValue){
         this.startingBPM.setValue(newValue);
+        editor.putInt("startBPM", newValue);
+        editor.commit();
     }
 
     public LiveData<Integer> getStartingBPM() {
@@ -53,9 +90,24 @@ public class HomeViewModel extends ViewModel {
 
     public void setGoalBPM(Integer newValue){
         this.goalBPM.setValue(newValue);
+        editor.putInt("goalBPM", newValue);
+        editor.commit();
     }
 
     public LiveData<Integer> getGoalBPM() {
         return goalBPM;
+    }
+
+
+
+    public void setSharedPrefsValues(){
+        int colour = pref.getInt("colour", -1);
+        if(colour != -1){
+            this.setColour(colour);
+        }
+        this.setStartingBPM(pref.getInt("startBPM", 11));
+        this.setGoalBPM(pref.getInt("goalBPM", 6));
+        this.setColourButtonBackground(pref.getString("colourButtonBackground", "red"));
+        this.setDurationSpinnerPosition(pref.getInt("spinnerPosition", 0));
     }
 }
