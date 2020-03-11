@@ -10,7 +10,7 @@ public class RateViewModel extends ViewModel {
 
     public RateViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is rate fragment");
+        mText.setValue("Thank you for rating Breathe Light!");
     }
 
     public LiveData<String> getText() {

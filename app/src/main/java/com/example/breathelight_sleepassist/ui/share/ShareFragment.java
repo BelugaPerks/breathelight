@@ -1,5 +1,6 @@
 package com.example.breathelight_sleepassist.ui.share;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,13 @@ public class ShareFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Breathe Light: match your breathing rhythm to the light to fall asleep faster and easier.");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+
         return root;
     }
 }
