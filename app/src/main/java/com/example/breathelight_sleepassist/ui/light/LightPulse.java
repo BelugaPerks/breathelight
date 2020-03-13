@@ -160,7 +160,7 @@ public class LightPulse extends Activity {
                     }
                 }, 30000);
             }
-        }, 10);
+        }, duration);
 
         //Add the animator list to the animatorSet, and play them sequentially
         pulseSet.playSequentially(animations);
