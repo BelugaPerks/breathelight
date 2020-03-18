@@ -125,9 +125,10 @@ public class LightPulse extends Activity {
         Log.i("debug", "onCreate: Goal breath duration: " + goalBreathDuration);
 
 
+        long totalTimeOfRemainingAnimations = 0;
 
         //Create breathe in and out animators which repeat for the remaining number of breaths, with 5 extra of each added to allow the screen to automatically lock before the process is finished
-        for(int i = 0; i<(numberOfRepeatsRemaining/2)+5; i++){
+        for(int i = 0; i<(numberOfRepeatsRemaining)+5; i++){
             final ObjectAnimator fadeInAnimator = ObjectAnimator
                     .ofFloat(lightPulseImage, View.ALPHA, 0f, 1f)
                     .setDuration(Math.round(goalBreathDuration*0.8));
@@ -136,7 +137,10 @@ public class LightPulse extends Activity {
                     .ofFloat(lightPulseImage, View.ALPHA, 1f, 0f)
                     .setDuration(Math.round(goalBreathDuration*1.2));
             animations.add(fadeOutAnimator);
+            totalTimeOfRemainingAnimations = totalTimeOfRemainingAnimations + Math.round(goalBreathDuration*0.8) + Math.round(goalBreathDuration*1.2);
         }
+        Log.i("debug", "onCreate: total time of final animations " + totalTimeOfRemainingAnimations);
+
 
         Log.i("debug", "onCreate: animations list size: " + animations.size());
 
