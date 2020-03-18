@@ -12,10 +12,11 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info_24px"
             android:title="@string/menu_about" />
-    </group>
 
+    </group>
     <item android:title="@string/communicate_header">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
@@ -24,7 +25,9 @@
                 android:id="@+id/nav_rate"
                 android:icon="@drawable/ic_stars_24px"
                 android:title="@string/menu_rate" />
+            </group>
         </menu>
     </item>
+
 
 </menu>
