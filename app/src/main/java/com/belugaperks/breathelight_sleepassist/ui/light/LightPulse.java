@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist.ui.light;
+package com.belugaperks.breathelight_sleepassist.ui.light;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.example.breathelight_sleepassist.R;
+import com.belugaperks.breathelight_sleepassist.R;
 import java.util.ArrayList;
 import java.util.List;
 

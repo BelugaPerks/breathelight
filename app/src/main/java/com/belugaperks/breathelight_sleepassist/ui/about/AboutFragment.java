@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist.ui.about;
+package com.belugaperks.breathelight_sleepassist.ui.about;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,16 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.example.breathelight_sleepassist.R;
-import com.example.breathelight_sleepassist.ui.light.LightPulse;
+import com.belugaperks.breathelight_sleepassist.R;
 
 public class AboutFragment extends Fragment {
 

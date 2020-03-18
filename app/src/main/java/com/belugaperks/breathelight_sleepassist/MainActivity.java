@@ -1,9 +1,9 @@
-package com.example.breathelight_sleepassist;
+package com.belugaperks.breathelight_sleepassist;
 
 
 import android.os.Bundle;
 
-import com.example.breathelight_sleepassist.R;
+import com.belugaperks.breathelight_sleepassist.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist.ui.home;
+package com.belugaperks.breathelight_sleepassist.ui.home;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -22,8 +22,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.breathelight_sleepassist.R;
-import com.example.breathelight_sleepassist.ui.light.LightPulse;
+import com.belugaperks.breathelight_sleepassist.R;
+import com.belugaperks.breathelight_sleepassist.ui.light.LightPulse;
 
 import java.util.HashMap;
 

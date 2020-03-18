@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist;
+package com.belugaperks.breathelight_sleepassist;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.breathelight_sleepassist", appContext.getPackageName());
+        assertEquals("com.belugaperks.breathelight_sleepassist", appContext.getPackageName());
     }
 }

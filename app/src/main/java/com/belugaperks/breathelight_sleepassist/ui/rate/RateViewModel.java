@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist.ui.rate;
+package com.belugaperks.breathelight_sleepassist.ui.rate;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

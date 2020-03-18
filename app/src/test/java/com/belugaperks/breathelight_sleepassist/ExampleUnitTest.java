@@ -1,4 +1,4 @@
-package com.example.breathelight_sleepassist;
+package com.belugaperks.breathelight_sleepassist;
 
 import org.junit.Test;
 
