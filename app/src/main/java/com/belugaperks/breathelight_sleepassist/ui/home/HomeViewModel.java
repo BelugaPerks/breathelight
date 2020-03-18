@@ -90,7 +90,7 @@ public class HomeViewModel extends AndroidViewModel {
 
 
     public void setSharedPrefsValues(){
-        this.setColour(pref.getInt("colour", -1));
+        this.setColour(pref.getInt("colour", -65536));
         this.setStartingBPM(pref.getInt("startBPM", 11));
         this.setGoalBPM(pref.getInt("goalBPM", 6));
         this.setColourButtonBackground(pref.getString("colourButtonBackground", "red"));
