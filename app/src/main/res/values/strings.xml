@@ -41,4 +41,14 @@
 
     <string name="pulsing_light_description">Coloured background which changes from visible to invisible, and back again, to breathing rhythm</string>
     <string name="stop_button_text">STOP</string>
+
+    <string name="license_button_text">View License</string>
+    <string name="view_source_button_text">View Source Code</string>
+
+    <string name="about_text_1">Breathe Light allows you to focus your attention outside of your body, slowing your breathing to a rhythm that naturally facilitates sleep.</string>
+    <string name="about_text_2">By focusing OUTSIDE of your body, you are able to enter a meditative state easier, with less possibility of your mind wandering and losing focus on your breathing.</string>
+    <string name="about_text_3">Simply select your preferred settings for duration, starting breaths/minute (BPM), goal breaths/minute, and light colour, and match your breathing to the pulsing light. Breathe in as the light gets brighter, and out as it dims.</string>
+    <string name="about_text_4">The recommended settings are a 10 or 20 minute duration, 11 starting breaths/minute, and 6 goal breaths/minute.</string>
+    <string name="about_text_5">The pulsing light will adjust over the first 5 minutes from your starting BPM to your goal BPM, then continue at your goal BPM for the remainder of the duration.</string>
+    <string name="about_text_6">BreatheLight is open source, developed under the GNU General Public License. Feel free to run, study, share, and modify the software.</string>
 </resources>
