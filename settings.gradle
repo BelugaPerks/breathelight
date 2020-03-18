@@ -1,2 +1,2 @@
-include ':app'
+include ':breatheLight'
 rootProject.name='Breathe Light - Sleep Assist'
