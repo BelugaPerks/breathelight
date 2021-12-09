@@ -158,6 +158,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 colourPickerButton.setBackground(colourButtonMap.get(s));
+                colourPickerButton.setTag(s);
             }
         });
 
