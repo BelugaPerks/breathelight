@@ -1,13 +1,6 @@
 Feature: Adjust settings in the main screen and see that they have been changed
 
-#  Scenario: Change settings to minimum for target and start BPM
-#    Given I start the application
-#    When I drag the start BPM slider all the way to the left
-#    And I drag the target BPM slider all the way to the left
-#    Then I expect the starting breaths/min display to show 8
-#    Then I expect the target breaths/min display to show 4
-
-  Scenario Outline: Change settings to maximum for target and start BPM
+  Scenario Outline: Adjust settings for target and start BPM
     Given I start the application
     When I drag the start BPM slider to position <Start_BPM_Seekbar_Position>
     And I drag the target BPM slider to position <Target_BPM_Seekbar_Position>
