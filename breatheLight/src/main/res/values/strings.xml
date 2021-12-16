@@ -12,10 +12,7 @@
 
     <string name="menu_home">Breathe Light</string>
     <string name="menu_about">About</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
-    <string name="menu_rate">Rate</string>
 
     <string-array name="time_array">
         <item>10 Minutes</item>
@@ -47,7 +44,9 @@
 
     <string name="share_button_text">Share</string>
 
-    <string name="rate_button_text">Rate</string>
+
+    <string name="preferences_file_key">LightPulseActivityKey</string>
+
 
     <string name="about_text_1">Breathe Light allows you to focus your attention outside of your body, slowing your breathing to a rhythm that naturally facilitates sleep.</string>
     <string name="about_text_2">By focusing OUTSIDE of your body, you are able to enter a meditative state easier, with less possibility of your mind wandering and losing focus on your breathing.</string>
