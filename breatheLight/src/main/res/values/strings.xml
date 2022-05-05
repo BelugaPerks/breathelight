@@ -43,6 +43,7 @@
     <string name="view_source_button_text">View Source Code</string>
 
     <string name="share_button_text">Share</string>
+    <string name="share_message">Breathe Light App: Match your breathing rhythm to a light to fall asleep faster and easier - https://play.google.com/store/apps/details?id=com.belugaperks.breathelight_sleepassist</string>
 
 
     <string name="preferences_file_key">LightPulseActivityKey</string>

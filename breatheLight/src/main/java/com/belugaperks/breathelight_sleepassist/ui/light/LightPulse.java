@@ -2,30 +2,27 @@ package com.belugaperks.breathelight_sleepassist.ui.light;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.belugaperks.breathelight_sleepassist.R;
-import com.google.android.play.core.review.ReviewInfo;
-import com.google.android.play.core.review.ReviewManager;
-import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.tasks.Task;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LightPulse extends AppCompatActivity {
@@ -56,6 +53,45 @@ public class LightPulse extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
+
+
+        // Make sure animator scale is correctly set
+        // Get duration scale from the global settings.
+        float durationScale = Settings.Global.getFloat(this.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 1f);
+        // If global duration scale is not 1 (default), try to override it for this activity.
+        if (durationScale != 1) {
+            try {
+                ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 1f);
+                durationScale = 1f;
+            } catch (Throwable t) {
+                // Something went wrong, alert the user.
+                AlertDialog alertDialog = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.myDialog))
+                        //set icon
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        //set title
+                        .setTitle("Warning - Light Pulse will not work on your device")
+                        //set message
+                        .setMessage("The 'Animator Duration Scale' has been changed from the default value of 1. BreatheLight attempted to override this setting, but was not able to do so. For the app to work properly you will need to go to your phone's settings, then 'Developer Settings', and set 'Animator Duration Scale' to 1.")
+                        //set return button
+                        .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //set what would happen when positive button is clicked
+                                finish();
+                            }
+                        })
+                        //set close warning button
+                        .setNegativeButton("Close Warning", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //set what should happen when button is clicked
+                                Toast.makeText(getApplicationContext(),"BreatheLight may not work properly until 'Animator Duration Scale' setting is updated!",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
+            }
+        }
+
 
         setTheme(R.style.AppTheme);
 

@@ -1,7 +1,6 @@
 package com.belugaperks.breathelight_sleepassist.ui.share;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,7 @@ public class ShareFragment extends Fragment {
                 ViewModelProviders.of(this).get(com.belugaperks.breathelight_sleepassist.ui.share.ShareViewModel.class);
         View root = inflater.inflate(R.layout.fragment_share, container, false);
         final TextView textView = root.findViewById(R.id.text_share);
-        shareViewModel.getText().observe(this, new Observer<String>() {
+        shareViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
@@ -41,7 +40,7 @@ public class ShareFragment extends Fragment {
             public void onClick(View v) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Breathe Light: match your breathing rhythm to the light to fall asleep faster and easier.");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message));
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(sendIntent);
