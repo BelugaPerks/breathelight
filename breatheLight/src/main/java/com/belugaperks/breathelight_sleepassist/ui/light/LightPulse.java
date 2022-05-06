@@ -121,33 +121,7 @@ public class LightPulse extends AppCompatActivity {
         final ImageView lightPulseImage = findViewById(R.id.image_pulsing_light);
         lightPulseImage.setBackgroundColor(intent.getIntExtra("colour", 0));
 
-        // Allow the screen to lock after the selected duration is over.
-        final Handler screenOffHandler = new Handler();
-        int duration = lightPulseViewModel.getDurationInMilliseconds(intent.getStringExtra("duration").substring(0,2));
-        screenOffHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-                //End the activity once the screen has been given time to lock
-                final Handler screenOffHandler = new Handler();
-                screenOffHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.i("debug", "Exiting light pulse activity");
-
-                        // Create/update persistent count var
-                        SharedPreferences prefs = getSharedPreferences(getString(R.string.preferences_file_key), Context.MODE_PRIVATE );
-                        int count = prefs.getInt("activityCount", 0);
-                        count++;
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putInt("activityCount", count );
-                        editor.apply();
-                        finish();
-                    }
-                }, 30000);
-            }
-        }, duration);
 
 
 
@@ -160,6 +134,44 @@ public class LightPulse extends AppCompatActivity {
 
         // Add the animator list to the animatorSet, and play them sequentially
         pulseSet.playSequentially(animations);
+
+
+        // Allow the screen to lock after the selected duration is over.
+        final Handler screenOffHandler = new Handler();
+        int duration = lightPulseViewModel.getDurationInMilliseconds(intent.getStringExtra("duration").substring(0,2));
+        screenOffHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+                //End the animations once the screen has been given time to lock
+                final Handler screenOffHandler = new Handler();
+                screenOffHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("debug", "Ending light pulse activity");
+
+                        // Create/update persistent count var for asking about rating
+                        SharedPreferences prefs = getSharedPreferences(getString(R.string.preferences_file_key), Context.MODE_PRIVATE );
+                        int count = prefs.getInt("activityCount", 0);
+                        count++;
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putInt("activityCount", count );
+                        editor.apply();
+
+
+                        //finish();
+                        pulseSet.end();
+                        Button stopButton = findViewById(R.id.stop_button);
+                        stopButton.setText(R.string.stop_button_text_end);
+
+                    }
+                }, 30000);
+            }
+        }, duration);
+
+
+
         pulseSet.start();
 
 

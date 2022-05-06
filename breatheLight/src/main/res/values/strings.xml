@@ -38,6 +38,7 @@
 
     <string name="pulsing_light_description">Coloured background which changes from visible to invisible, and back again, to breathing rhythm</string>
     <string name="stop_button_text">STOP</string>
+    <string name="stop_button_text_end">BACK</string>
 
     <string name="license_button_text">View License</string>
     <string name="view_source_button_text">View Source Code</string>

@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         // Get persistent count var, if it is 3 then can ask the user to rate the app.
         SharedPreferences prefs = getSharedPreferences(getString(R.string.preferences_file_key), Context.MODE_PRIVATE );
         int count = prefs.getInt("activityCount", 0);
-        System.out.println("Count: " + count);
         if(count > 3){
             Task<ReviewInfo> request = reviewManager.requestReviewFlow();
             request.addOnCompleteListener(task -> {
